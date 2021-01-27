@@ -18,4 +18,3 @@ Database set-up:
 2. Create the database using the psql command CREATE DATABASE bookmark_manager;
 3. Connect to the database using the psql commmand \c bookmark_manager;
 4. run the quer we have saved in the file 01_create_bookmarks_table.sql
-

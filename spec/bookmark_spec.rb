@@ -5,9 +5,9 @@ describe Bookmark do
     it 'contains some url bookmarks' do
       connection = PG.connect(dbname: 'bookmark_manager_test')
 
-      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.makersacademy.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.destroyallsoftware.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.google.com');")
+      described_class.create('http://www.makersacademy.com')
+      described_class.create('http://www.destroyallsoftware.com')
+      described_class.create('http://www.google.com')
 
       bookmarks = Bookmark.all
 
@@ -16,4 +16,12 @@ describe Bookmark do
       expect(bookmarks).to include("http://www.destroyallsoftware.com")
     end
   end
+
+  describe "Create" do
+    it "creates a new bookmark" do
+      described_class.create("testwebsite.co.uk")
+      expect(described_class.all).to include("testwebsite.co.uk")
+    end
+  end
+
 end
