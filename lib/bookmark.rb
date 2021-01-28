@@ -21,7 +21,7 @@ class Bookmark
 
     result = connection.exec("SELECT * FROM bookmarks;")
     result.map do |bookmark|
-       Bookmark.new(id: bookmark['id'], title: bookmark['title'], new_bookmark: bookmark['new_bookmark'])
+       Bookmark.new(id: bookmark['id'], title: bookmark['title'], new_bookmark: bookmark['url'])
     end
   end
 
@@ -34,7 +34,7 @@ class Bookmark
     end
 
     result = connection.exec("INSERT INTO bookmarks (url, title) VALUES('#{new_bookmark}', '#{title}') RETURNING id, title, url;")
-    Bookmark.new(id: result[0]['id'], title: result[0]['title'], new_bookmark: result[0]['new_bookmark'])
+    Bookmark.new(id: result[0]['id'], title: result[0]['title'], new_bookmark: result[0]['url'])
   end
 
 end

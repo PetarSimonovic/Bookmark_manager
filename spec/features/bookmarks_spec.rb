@@ -5,7 +5,7 @@ feature 'Viewing bookmarks' do
   Bookmark.create(new_bookmark: 'http://www.makersacademy.com', title: 'Makers Academy')
   Bookmark.create(new_bookmark: 'http://www.destroyallsoftware.com', title: 'Destroy All Software')
   Bookmark.create(new_bookmark: 'http://www.google.com', title: 'Google')
-    
+
   visit '/bookmarks'
 
   expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')
@@ -27,7 +27,7 @@ end
       fill_in('new_bookmark', with: 'http://bbc.co.uk')
       fill_in('title', with: 'BBC')
       click_button('Add')
-      expect(page).to have_content('http://bbc.co.uk')
+      expect(page).to have_content('BBC')
     end
 
 end
