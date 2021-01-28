@@ -6,8 +6,23 @@
 
 <form action="/add_bookmark" method="post">
   <label for="new_bookmark">
-    Add bookmark
+    Add URL
     <input type="text" id="new_bookmark" name="new_bookmark">
+  </label>
+  <label for="title">
+    Add Title
+    <input type="text" id="title" name="title">
   </label>
     <button>Add </button>
 </form>
+
+<ul>
+  <% @list.each do |bookmark| %>
+    <li>
+      <a href="<%= bookmark.new_bookmark %>">
+        <%= bookmark.title %>
+      </a>
+    </li>
+  <% end %>
+</ul>   
+

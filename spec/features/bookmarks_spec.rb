@@ -2,23 +2,16 @@ require 'pg'
 
 feature 'Viewing bookmarks' do
   scenario 'A user can see bookmarks' do
-    connection = PG.connect(dbname: 'bookmark_manager_test')
-
-    # Add the test data
-    visit('bookmarks')
-
-    fill_in('new_bookmark', with: 'http://www.makersacademy.com')
-    click_button('Add')
-    expect(page).to have_content "http://www.makersacademy.com"
-
-    fill_in('new_bookmark', with: 'http://www.destroyallsoftware.com')
-    click_button('Add')
-    expect(page).to have_content "http://www.destroyallsoftware.com"
-
-    fill_in('new_bookmark', with: 'http://www.google.com')
-    click_button('Add')
-    expect(page).to have_content "http://www.google.com"
+  Bookmark.create(new_bookmark: 'http://www.makersacademy.com', title: 'Makers Academy')
+  Bookmark.create(new_bookmark: 'http://www.destroyallsoftware.com', title: 'Destroy All Software')
+  Bookmark.create(new_bookmark: 'http://www.google.com', title: 'Google')
     
+  visit '/bookmarks'
+
+  expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')
+  expect(page).to have_link('Destroy All Software',  href: 'http://www.destroyallsoftware.com')
+  expect(page).to have_link('Google', href: 'http://www.google.com')
+
   end
 
 end
@@ -32,6 +25,7 @@ end
     scenario "it can store a bookmark" do
       visit('/bookmarks')
       fill_in('new_bookmark', with: 'http://bbc.co.uk')
+      fill_in('title', with: 'BBC')
       click_button('Add')
       expect(page).to have_content('http://bbc.co.uk')
     end
