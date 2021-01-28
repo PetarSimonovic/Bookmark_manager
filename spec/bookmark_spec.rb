@@ -4,7 +4,7 @@ require_relative 'database.helper'
 describe Bookmark do
   describe '.all' do
     it 'contains some url bookmarks' do
-      connection = PG.connect(dbname: 'bookmark_manager_test')
+      # connection = PG.connect(dbname: 'bookmark_manager_test')
 
         bookmark = Bookmark.create(new_bookmark: "http://www.makersacademy.com", title: "Makers Academy")
         Bookmark.create(new_bookmark: "http://www.destroyallsoftware.com", title: "Destroy All Software")
