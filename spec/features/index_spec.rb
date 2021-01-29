@@ -1,4 +1,4 @@
-feature 'index page' do 
+feature 'Index page' do 
   scenario 'it should have an index page' do 
     visit('/')
     expect(page).to have_content "Welcome to bookmarks"

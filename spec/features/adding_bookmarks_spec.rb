@@ -6,7 +6,7 @@ feature 'Viewing bookmarks' do
   Bookmark.create(new_bookmark: 'http://www.destroyallsoftware.com', title: 'Destroy All Software')
   Bookmark.create(new_bookmark: 'http://www.google.com', title: 'Google')
 
-  visit '/bookmarks'
+  visit '/'
 
   expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')
   expect(page).to have_link('Destroy All Software',  href: 'http://www.destroyallsoftware.com')
@@ -18,12 +18,12 @@ end
 
   feature "Adding bookmarks" do
     scenario "can add a bookmark with a form" do
-      visit('/bookmarks')
+      visit('/')
       click_button('Add')
     end
 
     scenario "it can store a bookmark" do
-      visit('/bookmarks')
+      visit('/')
       fill_in('new_bookmark', with: 'http://bbc.co.uk')
       fill_in('title', with: 'BBC')
       click_button('Add')
